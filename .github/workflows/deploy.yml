@@ -1,0 +1,25 @@
+name : Deploy to Azure VM
+
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy: 
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Deploy to server
+      uses: appleboy/ssh-action@v1.0.0
+
+      with:
+        host: ${{ secrets.VM_PUBLIC_IP }}
+        username: ${{ secrets.VM_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd ~/node_project
+          git pull origin main
+          pm2 restart first-node
