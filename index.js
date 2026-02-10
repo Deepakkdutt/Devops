@@ -5,7 +5,9 @@ const app = express();
 const port = 3000;
 
 app.get("/", (req,res)=>{
-res.send('Hello from my first DevOps-deployed Node app!');
+res.send(`<h1>Welcome to my first Express App</h1>
+<p>This is a simple Express application that serves a welcome message on the root route.</p>
+`);
 });
 
 app.listen(port, ()=>{
