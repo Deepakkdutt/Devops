@@ -4,10 +4,11 @@ const app = express();
 
 const port = 3000;
 
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+
 app.get("/", (req,res)=>{
-res.send(`<h1>Welcome to my first Express App</h1>
-<p>This is a simple Express application that serves a welcome message on the root route.</p>
-`);
+    res.render('index');
 });
 
 app.listen(port, ()=>{
